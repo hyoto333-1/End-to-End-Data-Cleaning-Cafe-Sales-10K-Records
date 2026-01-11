@@ -47,12 +47,28 @@ Karena kolom tanggal sangat krusial untuk analisis *time-series*, semua baris ya
 - **Data dihapus:** 460 baris.
 
 ### 4. Pemulihan Data Produk (XLOOKUP Recovery)
-Menggunakan teknik *mapping* antara `Item` dan `Price Per Unit` melalui **Reference Table**.
-- **Logika Kolom Item:** `=IF(OR([@Item]="",[@Item]="UNKNOWN",[@Item]="ERROR"), XLOOKUP([@[Price Per Unit]],Table2[Price Per Unit],Table2[Item],"other"),[@Item])`
-- **Logika Kolom Price:** `=IF(OR([@[Price Per Unit]]="",[@[Price Per Unit]]="UNKNOWN",[@[Price Per Unit]]="ERROR"),XLOOKUP([@Item],Table2[Item],Table2[Price Per Unit],"other"),[@[Price Per Unit]])`
-- **Tindakan:** Menghapus **51 baris** tambahan yang kolom Item dan harganya kosong (tidak bisa dipulihkan).
+Menggunakan teknik *mapping* antara `Item` dan `Price Per Unit` melalui **Reference Table** (Table2). Strategi ini memulihkan data yang hilang dengan memanfaatkan konsistensi harga satuan tiap produk.
 
-> **[TEMPEL SCREENSHOT TABEL REFERENSI & RUMUS XLOOKUP DI SINI]**
+- **Logika Pengisian Data Otomatis:**
+  - **Untuk Kolom Item:** Jika `Item` kosong/ERROR, sistem mencari nama item berdasarkan harga di tabel referensi.
+    ```excel
+    =IF(OR([@Item]="",[@Item]="UNKNOWN",[@Item]="ERROR"), XLOOKUP([@[Price Per Unit]],Table2[Price Per Unit],Table2[Item],"other"),[@Item])
+    ```
+  - **Untuk Kolom Price:** Jika `Price` kosong/ERROR, sistem mencari harga berdasarkan nama item di tabel referensi.
+    ```excel
+    =IF(OR([@[Price Per Unit]]="",[@[Price Per Unit]]="UNKNOWN",[@[Price Per Unit]]="ERROR"),XLOOKUP([@Item],Table2[Item],Table2[Price Per Unit],"other"),[@[Price Per Unit]])
+    ```
+
+- **Tindakan Lanjutan:** Menghapus **51 baris** di mana kolom Item dan Price keduanya kosong (tidak dapat dipulihkan secara logis).
+
+#### Dokumentasi Teknis:
+<p align="left">
+  <img src="./screenshots/Reference_table.png" width="45%" alt="Tabel Referensi">
+  <img src="./screenshots/XLOOKUP.png" width="45%" alt="Implementasi XLOOKUP">
+</p>
+<p><i>Kiri: Tabel Referensi sebagai acuan data | Kanan: Implementasi rumus XLOOKUP pada dataset utama.</i></p>
+
+---
 
 ### 5. Imputasi Nilai Quantity
 Mengisi data yang hilang/rusak pada kolom `Quantity` menggunakan nilai **Median** agar tidak merusak distribusi statistik data.
