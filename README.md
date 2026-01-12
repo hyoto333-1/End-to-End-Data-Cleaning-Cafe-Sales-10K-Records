@@ -111,7 +111,7 @@ Setelah proses pembersihan, saya membuat dashboard sederhana menggunakan Pivot T
  - Actionable Tip: Memfokuskan kampanye cashback atau diskon pada kanal pembayaran yang paling banyak digunakan untuk meningkatkan loyalitas pelanggan.
 
 <p align="left">
-  <img src="./screenshots/power_query.png" width="70%" alt="Power Query ETL Process">
+  <img src="./screenshots/dashboard.png" width="70%" alt="Power Query ETL Process">
 </p>
 
 ## 📂 Struktur Repositori
