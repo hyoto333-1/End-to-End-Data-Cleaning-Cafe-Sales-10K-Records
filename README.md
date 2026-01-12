@@ -5,16 +5,20 @@ Proyek ini mendemonstrasikan proses pembersihan data (*data cleaning*) pada data
 
 Hasil akhir dari proyek ini adalah dataset bersih berjumlah **9.489 baris** yang siap digunakan untuk analisis bisnis dan visualisasi.
 
+**Dataset Source:** Dataset ini diambil dari Kaggle: [Cafe Sales - Dirty Data for Cleaning Training](https://www.kaggle.com/datasets/ahmedmohamed2003/cafe-sales-dirty-data-for-cleaning-training) 
 ---
 
 ## 🛠️ Langkah-Langkah Pembersihan Data
 
 ### 1. Data Loading & Initial Formatting
-- Mengimpor file CSV menggunakan **Power Query**.
-- Menyesuaikan header (mengangkat baris kedua menjadi header utama).
-- Menyamakan format data untuk kolom `Transaction Date`, `Quantity`, `Price Per Unit`, dan `Total Spent`.
+- Mengimpor file CSV menggunakan **Power Query** untuk memastikan proses ETL (*Extract, Transform, Load*) yang terdokumentasi.
+- Menyesuaikan header dengan mengangkat baris kedua menjadi header utama (*Promote Headers*).
+- Melakukan verifikasi dan penyesuaian tipe data (*Data Type Validation*) pada kolom `Transaction Date`, `Quantity`, `Price Per Unit`, dan `Total Spent`.
 
-> **[TEMPEL SCREENSHOT POWER QUERY DI SINI]**
+<p align="left">
+  <img src="./screenshots/power_query.png" width="70%" alt="Power Query ETL Process">
+</p>
+<p><i>Proses awal transformasi data menggunakan Power Query Editor untuk standarisasi format.</i></p>
 
 ## 📖 Data Dictionary (Kolom Dataset)
 Berikut adalah penjelasan dari setiap kolom yang terdapat dalam dataset:
@@ -90,8 +94,6 @@ Melakukan *labeling* ulang untuk kategori yang hilang atau rusak agar tetap dapa
 - **Dataset Akhir:** 9.489 Baris
 - **Integritas Data:** 100% Valid (Bebas dari nilai Blank, Error, dan Unknown).
 
-> **[TEMPEL SCREENSHOT PIVOT TABLE / DASHBOARD DI SINI]**
-
 ## 📊 Business Insights (Pivot Charts)
 Setelah proses pembersihan, saya membuat dashboard sederhana menggunakan Pivot Table & Chart untuk memvisualisasikan data yang telah pulih:
 
@@ -107,11 +109,14 @@ Setelah proses pembersihan, saya membuat dashboard sederhana menggunakan Pivot T
  - Insight: Memahami preferensi transaksi pelanggan.
  - Analysis: Tingginya penggunaan metode pembayaran tertentu (misal: Digital Wallet) menunjukkan profil pelanggan yang modern/tech-savvy. Insight ini krusial untuk negosiasi biaya admin (MDR) dengan penyedia layanan pembayaran.
  - Actionable Tip: Memfokuskan kampanye cashback atau diskon pada kanal pembayaran yang paling banyak digunakan untuk meningkatkan loyalitas pelanggan.
-> **[TEMPEL SCREENSHOT PIVOT CHART/DASHBOARD DI SINI]**
+
+<p align="left">
+  <img src="./screenshots/power_query.png" width="70%" alt="Power Query ETL Process">
+</p>
 
 ## 📂 Struktur Repositori
-- `data/dirty_cafe_sales.csv`: Dataset asli sebelum dibersihkan.
-- `Cafe_Sales_Cleaned.xlsx`: File Excel final yang berisi data bersih dan tabel referensi.
+- `raw_data/dirty_cafe_sales.csv`: Dataset asli sebelum dibersihkan.
+- `Cafe_Sales_Clean.xlsx`: File Excel final yang berisi data bersih dan tabel referensi.
 - `README.md`: Dokumentasi proyek.
 
 ---
